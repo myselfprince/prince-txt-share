@@ -6,7 +6,27 @@ export default function Home() {
   const [text, setText] = useState('');
   const [link, setLink] = useState('');
 
-  
+  const [customWord, setCustomWord] = useState('');
+
+const handleSubmit = async () => {
+  const res = await fetch('/api/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, customWord }),
+  });
+
+  const data = await res.json();
+
+  if (data.error) {
+    toast.error(data.error, { duration: 1500 });
+    return;
+  }
+
+  if (data.id) {
+    setLink(`${location.origin}/view/${data.id}`);
+  }
+};
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(link);
@@ -17,18 +37,18 @@ export default function Home() {
   };
 
 
-  const handleSubmit = async () => {
-    const res = await fetch('/api/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
-    });
+  // const handleSubmit = async () => {
+  //   const res = await fetch('/api/save', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ text }),
+  //   });
 
-    const data = await res.json();
-    if (data.id) {
-      setLink(`${location.origin}/view/${data.id}`);
-    }
-  };
+  //   const data = await res.json();
+  //   if (data.id) {
+  //     setLink(`${location.origin}/view/${data.id}`);
+  //   }
+  // };
 
   return (
     <main style={{ maxWidth: 800, margin: '50px auto', padding: '0 20px' }}>
@@ -49,21 +69,19 @@ export default function Home() {
         style={{ width: '100%', fontSize: 16 }}
       />
       <br /><br />
-      {/* <button
-      className='bg-green-600 text-white rounded hover:bg-green-700'
-        type="button"
-        onClick={handleSubmit}
-        style={{ padding: '10px 20px', cursor: 'pointer' }}
-      >
-        🔗 Create Shareable Link
-      </button>
+        <label htmlFor="custom-word" className="font-semibold mt-4 block">
+            Optional Custom Link (e.g. dog, 121, hello):
+          </label>
+          <input
+            id="custom-word"
+            type="text"
+            value={customWord}
+            onChange={(e) => setCustomWord(e.target.value)}
+            placeholder="custom-url word (optional)"
+            className="border p-2 rounded border-gray-300 w-full mt-1"
+          />
+          <br /><br />
 
-      {link && (
-        <div style={{ marginTop: 20 }}>
-          <b>Share this link:</b><br />
-          <a href={link} target="_blank" rel="noopener noreferrer">{link}</a>
-        </div>
-      )} */}
 
       <button
         className='bg-green-600 text-white rounded hover:bg-green-700'
@@ -71,7 +89,7 @@ export default function Home() {
         onClick={handleSubmit}
         style={{ padding: '10px 20px', cursor: 'pointer' }}
       >
-        🔗 Create Shareable Link
+        🔗 Easy to Remember Link
       </button>
    
       {link && (
@@ -86,6 +104,7 @@ export default function Home() {
             >
               {link}
             </a>
+          
             <button
               onClick={copyToClipboard}
               className="cursor-pointer bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
