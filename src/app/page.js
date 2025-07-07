@@ -36,7 +36,7 @@ export default function Home() {
         position="top-center"
         reverseOrder={false}
       />
-      <h1 className='text-2xl font-bold mb-3'>📄 Welcome to PS17</h1>
+      <h1 className='text-2xl font-bold mb-3 text-3xl font-bold text-gray-800 mb-4 flex items-center'>📄 Welcome to PS17 - Text Share</h1>
       <label htmlFor="share-text" style={{ fontWeight: 'bold' }}>Enter Text Below</label><br />
       <textarea
       className='border p-2 rounded border-gray-300 h-[100px]'
