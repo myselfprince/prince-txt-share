@@ -23,7 +23,7 @@ const handleSubmit = async () => {
   }
 
   if (data.id) {
-    setLink(`${location.origin}/view/${data.id}`);
+    setLink(`${location.origin}/v/${data.id}`);
   }
 };
 
