@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function ViewPage() {
-  const { id } = useParams(); // ✅ FIXED: useParams() hook
+  const { id } = useParams();
   const [text, setText] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
