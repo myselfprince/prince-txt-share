@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
+import Link from 'next/link';
 export default function Home() {
   const [text, setText] = useState('');
   const [link, setLink] = useState('');
@@ -46,10 +46,19 @@ export default function Home() {
           },
         }}
       />
-      
+      <div className='flex items-center justify-between'>
+        
       <h1 className='text-3xl font-bold text-gray-100 mb-4 flex items-center'>
         📄 Welcome to PS17 - Text Share
       </h1>
+      <Link
+        className='bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors shadow-md cursor-pointer px-4 py-2'
+        type="button"
+        href="/v/"
+      >
+        All Links
+      </Link>
+      </div>
       
       <label htmlFor="share-text" className="font-bold text-gray-200">
         Enter Text Below
