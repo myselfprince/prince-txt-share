@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import Link from 'next/link';
 
 export default function ViewPage() {
   const { id } = useParams();
@@ -49,7 +50,14 @@ export default function ViewPage() {
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-gray-800 rounded-xl shadow-2xl p-6 border border-gray-700">
           
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-between mb-4">
+           <Link
+                    className= "bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors shadow-md cursor-pointer px-4 py-2"
+                    type="button"
+                    href="/"
+                >
+                   Home
+                </Link>
             <button
               onClick={copyToClipboard}
               className="cursor-pointer bg-gray-700 text-gray-100 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-gray-600 transition-colors border border-gray-600"
