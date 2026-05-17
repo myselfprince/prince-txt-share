@@ -1,36 +1,5 @@
-// 'use client';
-// import { useParams } from 'next/navigation';
-// import { useEffect, useState } from 'react';
-
-// export default function ViewPage() {
-//   const { id } = useParams();
-//   const [text, setText] = useState(null);
-//   const [notFound, setNotFound] = useState(false);
-
-//   useEffect(() => {
-//     if (!id) return;
-
-//     fetch(`/api/get?id=${id}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         if (data.text) setText(data.text);
-//         else setNotFound(true);
-//       });
-//   }, [id]);
-
-//   if (notFound) return <h2 style={{ padding: 20 }}>❌ No text found for this link.</h2>;
-//   if (!text) return <h2 style={{ padding: 20 }}>Loading...</h2>;
-
-//   return (
-//     <main style={{ maxWidth: 800, margin: '50px auto', padding: '0 20px' }}>
-//       <h2>📄 Shared Text</h2>
-//       <pre style={{ whiteSpace: 'pre-wrap', background: '#f9f9f9', padding: 20 }}>{text}</pre>
-//     </main>
-//   );
-// }
-
-
 'use client';
+
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -42,7 +11,7 @@ export default function ViewPage() {
 
   useEffect(() => {
     if (!id) return;
-
+    
     fetch(`/api/get?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -59,21 +28,31 @@ export default function ViewPage() {
     });
   };
 
-  if (notFound) return <h2 className="text-2xl font-semibold text-red-600 p-6">❌ No text found for this link.</h2>;
-  if (!text) return <h2 className="text-2xl font-semibold text-gray-600 p-6">Loading...</h2>;
+  if (notFound) 
+    return <h2 className="text-2xl font-semibold text-red-400 p-6">❌ No text found for this link.</h2>;
+  
+  if (!text) 
+    return <h2 className="text-2xl font-semibold text-gray-400 p-6">Loading...</h2>;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-10">
       <Toaster
         position="top-center"
         reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        }}
       />
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="bg-gray-800 rounded-xl shadow-2xl p-6 border border-gray-700">
+          
           <div className="flex justify-end mb-4">
             <button
               onClick={copyToClipboard}
-              className="cursor-pointer bg-gray-800 text-white px-3 py-1 rounded flex items-center space-x-2 hover:bg-gray-700"
+              className="cursor-pointer bg-gray-700 text-gray-100 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-gray-600 transition-colors border border-gray-600"
             >
               <span>Copy Text</span>
               <svg
@@ -92,12 +71,17 @@ export default function ViewPage() {
               </svg>
             </button>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+
+          <h1 className="text-3xl font-bold text-gray-100 mb-4 flex items-center">
             📄PS17 - Shared Text
           </h1>
-          <div className="prose prose-lg max-w-none bg-gray-50 p-6 rounded-lg border border-gray-100">
-            <pre className="text-gray-800 whitespace-pre-wrap break-words">{text}</pre>
+
+          <div className="prose prose-lg max-w-none bg-gray-900 p-6 rounded-lg border border-gray-700 shadow-inner">
+            <pre className="text-gray-200 whitespace-pre-wrap break-words font-mono text-sm md:text-base">
+              {text}
+            </pre>
           </div>
+          
         </div>
       </div>
     </main>
