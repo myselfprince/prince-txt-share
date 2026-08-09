@@ -63,12 +63,12 @@ export default function ViewPage() {
   if (!text) return <h2 className="text-2xl font-semibold text-gray-600 p-6">Loading...</h2>;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10">
+    <main className="min-h-screen bg-black py-10 text-gray-100">
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="w-full px-4 md:px-8 lg:px-16 mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
           <div className="flex justify-end mb-4">
             <button

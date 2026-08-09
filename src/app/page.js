@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ maxWidth: 800, margin: '50px auto', padding: '0 20px' }}>
+    <main className="w-full min-h-screen px-4 py-12 md:px-8 lg:px-16 mx-auto">
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -65,7 +65,7 @@ export default function Home() {
       </label>
       <br />
       <textarea
-        className='border p-3 rounded-lg border-gray-700 bg-gray-800 text-gray-100 h-[150px] focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow'
+        className='border p-3 rounded-lg border-neutral-800 bg-black text-neutral-200 h-[150px] focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow'
         id="share-text"
         name="share-text"
         value={text}
@@ -84,7 +84,7 @@ export default function Home() {
         value={customWord}
         onChange={(e) => setCustomWord(e.target.value)}
         placeholder="custom-url word (optional)"
-        className="border p-2 rounded-lg border-gray-700 bg-gray-800 text-gray-100 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+        className="border p-2 rounded-lg border-neutral-800 bg-black text-neutral-200 w-full mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
       />
       <br /><br />
       
@@ -98,8 +98,8 @@ export default function Home() {
       </button>
 
       {link && (
-        <div className="mt-8 p-5 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
-          <p className="text-lg font-semibold text-gray-200 mb-3">Share this link:</p>
+        <div className="mt-8 p-5 bg-black rounded-lg shadow-lg border border-neutral-800">
+          <p className="text-lg font-semibold text-neutral-300 mb-3">Share this link:</p>
           <div className="flex items-center space-x-3">
             <a
               href={link}

@@ -36,7 +36,7 @@ export default function ViewPage() {
     return <h2 className="text-2xl font-semibold text-gray-400 p-6">Loading...</h2>;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-10">
+    <main className="min-h-screen bg-black py-10 text-gray-100">
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -47,8 +47,8 @@ export default function ViewPage() {
           },
         }}
       />
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-gray-800 rounded-xl shadow-2xl p-6 border border-gray-700">
+      <div className="w-full px-4 md:px-8 lg:px-16 mx-auto">
+        <div className="bg-black rounded-xl p-6 border border-neutral-800">
           
           <div className="flex justify-between mb-4">
            <Link
@@ -60,7 +60,7 @@ export default function ViewPage() {
                 </Link>
             <button
               onClick={copyToClipboard}
-              className="cursor-pointer bg-gray-700 text-gray-100 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-gray-600 transition-colors border border-gray-600"
+              className="cursor-pointer bg-neutral-800 text-gray-100 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-neutral-700 transition-colors border border-neutral-700"
             >
               <span>Copy Text</span>
               <svg
@@ -84,8 +84,8 @@ export default function ViewPage() {
             📄PS17 - Shared Text
           </h1>
 
-          <div className="prose prose-lg max-w-none bg-gray-900 p-6 rounded-lg border border-gray-700 shadow-inner">
-            <pre className="text-gray-200 whitespace-pre-wrap break-words font-mono text-sm md:text-base">
+          <div className="prose prose-lg max-w-none bg-black p-0 md:p-4 rounded-lg">
+            <pre className="text-neutral-300 whitespace-pre-wrap break-words font-mono text-sm md:text-base leading-relaxed">
               {text}
             </pre>
           </div>

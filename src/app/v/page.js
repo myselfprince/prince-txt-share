@@ -82,10 +82,10 @@ export default function AllLinksDashboard() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-900 text-gray-100 py-10">
+    <main className="min-h-screen bg-black text-gray-100 py-10">
       <Toaster position="top-center" toastOptions={{ style: { background: '#333', color: '#fff' } }} />
       
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="w-full px-4 md:px-8 lg:px-16 mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold flex items-center">
             🗂️ Links Dashboard
@@ -115,19 +115,19 @@ export default function AllLinksDashboard() {
               setSearch(e.target.value);
               setPage(1); // Reset to page 1 on new search
             }}
-            className="w-full md:w-1/3 border p-3 rounded-lg border-gray-700 bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+            className="w-full md:w-1/3 border p-3 rounded-lg border-neutral-800 bg-black text-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
           />
         </div>
 
         {/* Data Table */}
-        <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+        <div className="bg-black rounded-xl shadow-lg border border-neutral-800 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-gray-700 text-gray-300">
-                  <th className="p-4 font-semibold border-b border-gray-600">Link ID</th>
-                  <th className="p-4 font-semibold border-b border-gray-600">Text Preview</th>
-                  <th className="p-4 font-semibold border-b border-gray-600 text-right">Actions</th>
+                <tr className="bg-neutral-900 text-neutral-300">
+                  <th className="p-4 font-semibold border-b border-neutral-800">Link ID</th>
+                  <th className="p-4 font-semibold border-b border-neutral-800">Text Preview</th>
+                  <th className="p-4 font-semibold border-b border-neutral-800 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -141,19 +141,19 @@ export default function AllLinksDashboard() {
                   </tr>
                 ) : (
                   data.texts.map((item) => (
-                    <tr key={item.id} className="hover:bg-gray-750 border-b border-gray-700 transition-colors">
+                    <tr key={item.id} className="hover:bg-neutral-900 border-b border-neutral-800 transition-colors">
                       <td className="p-4 font-medium text-blue-400">
                         <Link href={`/v/${item.id}`} className="hover:underline">
                           {item.id}
                         </Link>
                       </td>
-                      <td className="p-4 text-gray-300 truncate max-w-xs">
+                      <td className="p-4 text-neutral-300 truncate max-w-xs">
                         {item.text.length > 60 ? item.text.substring(0, 60) + '...' : item.text}
                       </td>
                       <td className="p-4 flex justify-end space-x-3">
                         <button
                           onClick={() => openEditModal(item)}
-                          className="bg-gray-700 text-gray-200 px-3 py-1 rounded hover:bg-gray-600 transition-colors border border-gray-600"
+                          className="bg-neutral-800 text-neutral-200 px-3 py-1 rounded hover:bg-neutral-700 transition-colors border border-neutral-700"
                         >
                           Edit
                         </button>
@@ -173,21 +173,21 @@ export default function AllLinksDashboard() {
 
           {/* Pagination */}
           {!loading && data.totalPages > 1 && (
-            <div className="p-4 border-t border-gray-700 flex justify-between items-center bg-gray-800">
+            <div className="p-4 border-t border-neutral-800 flex justify-between items-center bg-black">
               <button
                 disabled={page <= 1}
                 onClick={() => setPage(page - 1)}
-                className="px-4 py-2 bg-gray-700 text-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+                className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-700 transition-colors"
               >
                 Previous
               </button>
-              <span className="text-gray-400">
-                Page <strong className="text-gray-100">{page}</strong> of {data.totalPages}
+              <span className="text-neutral-400">
+                Page <strong className="text-neutral-100">{page}</strong> of {data.totalPages}
               </span>
               <button
                 disabled={page >= data.totalPages}
                 onClick={() => setPage(page + 1)}
-                className="px-4 py-2 bg-gray-700 text-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+                className="px-4 py-2 bg-neutral-800 text-neutral-200 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-700 transition-colors"
               >
                 Next
               </button>
@@ -199,17 +199,17 @@ export default function AllLinksDashboard() {
       {/* Edit Modal Overlay */}
       {editingItem && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800 w-full max-w-2xl rounded-xl shadow-2xl border border-gray-700 p-6">
+          <div className="bg-black w-full max-w-2xl rounded-xl shadow-2xl border border-neutral-800 p-6">
             <h2 className="text-2xl font-bold mb-4">Editing Link: <span className="text-blue-400">{editingItem.id}</span></h2>
             <textarea
-              className="w-full border p-3 rounded-lg border-gray-700 bg-gray-900 text-gray-100 h-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full border p-3 rounded-lg border-neutral-800 bg-black text-neutral-200 h-[300px] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
             />
             <div className="flex justify-end space-x-3">
               <button
                 onClick={() => setEditingItem(null)}
-                className="bg-gray-700 text-gray-200 px-4 py-2 rounded hover:bg-gray-600 transition-colors"
+                className="bg-neutral-800 text-neutral-200 px-4 py-2 rounded hover:bg-neutral-700 transition-colors"
               >
                 Cancel
               </button>
